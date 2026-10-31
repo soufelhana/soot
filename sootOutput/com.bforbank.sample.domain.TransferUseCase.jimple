@@ -1,0 +1,133 @@
+public class com.bforbank.sample.domain.TransferUseCase extends java.lang.Object
+{
+    private final com.bforbank.sample.ports.out.AccountRepositoryPort accountRepository;
+    private final com.bforbank.sample.ports.out.TransferEventPort eventPort;
+
+    public void <init>(com.bforbank.sample.ports.out.AccountRepositoryPort, com.bforbank.sample.ports.out.TransferEventPort)
+    {
+        com.bforbank.sample.ports.out.AccountRepositoryPort r1;
+        com.bforbank.sample.ports.out.TransferEventPort r2;
+        com.bforbank.sample.domain.TransferUseCase r0;
+
+        r0 := @this: com.bforbank.sample.domain.TransferUseCase;
+
+        r1 := @parameter0: com.bforbank.sample.ports.out.AccountRepositoryPort;
+
+        r2 := @parameter1: com.bforbank.sample.ports.out.TransferEventPort;
+
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+
+        r0.<com.bforbank.sample.domain.TransferUseCase: com.bforbank.sample.ports.out.AccountRepositoryPort accountRepository> = r1;
+
+        r0.<com.bforbank.sample.domain.TransferUseCase: com.bforbank.sample.ports.out.TransferEventPort eventPort> = r2;
+
+        return;
+    }
+
+    public void executeTransfer(java.lang.String, java.lang.String, double)
+    {
+        com.bforbank.sample.ports.out.AccountRepositoryPort $r2, $r8, $r13, $r14;
+        com.bforbank.sample.domain.TransferUseCase r0;
+        java.util.function.Supplier $r3, $r9;
+        byte $b0;
+        int $i1;
+        java.lang.String r1, r7;
+        double d0;
+        java.lang.IllegalArgumentException $r17;
+        com.bforbank.sample.domain.Account r6, r12;
+        java.util.Optional $r4, $r10;
+        java.lang.Object $r5, $r11;
+        com.bforbank.sample.ports.out.TransferEventPort $r15;
+
+        r0 := @this: com.bforbank.sample.domain.TransferUseCase;
+
+        r1 := @parameter0: java.lang.String;
+
+        r7 := @parameter1: java.lang.String;
+
+        d0 := @parameter2: double;
+
+        $b0 = d0 cmpg 0.0;
+
+        $i1 = (int) $b0;
+
+        if $i1 > 0 goto label1;
+
+        $r17 = new java.lang.IllegalArgumentException;
+
+        specialinvoke $r17.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("Transfer amount must be strictly positive");
+
+        throw $r17;
+
+     label1:
+        $r2 = r0.<com.bforbank.sample.domain.TransferUseCase: com.bforbank.sample.ports.out.AccountRepositoryPort accountRepository>;
+
+        $r4 = interfaceinvoke $r2.<com.bforbank.sample.ports.out.AccountRepositoryPort: java.util.Optional findById(java.lang.String)>(r1);
+
+        $r3 = staticinvoke <com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_0__1: java.util.function.Supplier bootstrap$(java.lang.String)>(r1);
+
+        $r5 = virtualinvoke $r4.<java.util.Optional: java.lang.Object orElseThrow(java.util.function.Supplier)>($r3);
+
+        r6 = (com.bforbank.sample.domain.Account) $r5;
+
+        $r8 = r0.<com.bforbank.sample.domain.TransferUseCase: com.bforbank.sample.ports.out.AccountRepositoryPort accountRepository>;
+
+        $r10 = interfaceinvoke $r8.<com.bforbank.sample.ports.out.AccountRepositoryPort: java.util.Optional findById(java.lang.String)>(r7);
+
+        $r9 = staticinvoke <com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2: java.util.function.Supplier bootstrap$(java.lang.String)>(r7);
+
+        $r11 = virtualinvoke $r10.<java.util.Optional: java.lang.Object orElseThrow(java.util.function.Supplier)>($r9);
+
+        r12 = (com.bforbank.sample.domain.Account) $r11;
+
+        virtualinvoke r6.<com.bforbank.sample.domain.Account: void withdraw(double)>(d0);
+
+        virtualinvoke r12.<com.bforbank.sample.domain.Account: void deposit(double)>(d0);
+
+        $r13 = r0.<com.bforbank.sample.domain.TransferUseCase: com.bforbank.sample.ports.out.AccountRepositoryPort accountRepository>;
+
+        interfaceinvoke $r13.<com.bforbank.sample.ports.out.AccountRepositoryPort: void save(com.bforbank.sample.domain.Account)>(r6);
+
+        $r14 = r0.<com.bforbank.sample.domain.TransferUseCase: com.bforbank.sample.ports.out.AccountRepositoryPort accountRepository>;
+
+        interfaceinvoke $r14.<com.bforbank.sample.ports.out.AccountRepositoryPort: void save(com.bforbank.sample.domain.Account)>(r12);
+
+        $r15 = r0.<com.bforbank.sample.domain.TransferUseCase: com.bforbank.sample.ports.out.TransferEventPort eventPort>;
+
+        interfaceinvoke $r15.<com.bforbank.sample.ports.out.TransferEventPort: void emitTransferCompleted(java.lang.String,java.lang.String,double)>(r1, r7, d0);
+
+        return;
+    }
+
+    public static java.lang.IllegalArgumentException lambda$executeTransfer$1(java.lang.String)
+    {
+        java.lang.String r1, $r2;
+        java.lang.IllegalArgumentException $r0;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.IllegalArgumentException;
+
+        $r2 = dynamicinvoke "makeConcatWithConstants" <java.lang.String (java.lang.String)>(r1) <java.lang.invoke.StringConcatFactory: java.lang.invoke.CallSite makeConcatWithConstants(java.lang.invoke.MethodHandles$Lookup,java.lang.String,java.lang.invoke.MethodType,java.lang.String,java.lang.Object[])>("Target account not found: \u0001");
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r2);
+
+        return $r0;
+    }
+
+    public static java.lang.IllegalArgumentException lambda$executeTransfer$0(java.lang.String)
+    {
+        java.lang.String r1, $r2;
+        java.lang.IllegalArgumentException $r0;
+
+        r1 := @parameter0: java.lang.String;
+
+        $r0 = new java.lang.IllegalArgumentException;
+
+        $r2 = dynamicinvoke "makeConcatWithConstants" <java.lang.String (java.lang.String)>(r1) <java.lang.invoke.StringConcatFactory: java.lang.invoke.CallSite makeConcatWithConstants(java.lang.invoke.MethodHandles$Lookup,java.lang.String,java.lang.invoke.MethodType,java.lang.String,java.lang.Object[])>("Source account not found: \u0001");
+
+        specialinvoke $r0.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>($r2);
+
+        return $r0;
+    }
+}

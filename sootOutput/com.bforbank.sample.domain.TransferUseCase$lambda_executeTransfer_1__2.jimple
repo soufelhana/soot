@@ -1,0 +1,49 @@
+public final class com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2 extends java.lang.Object implements java.util.function.Supplier
+{
+    java.lang.String cap0;
+
+    public static java.util.function.Supplier bootstrap$(java.lang.String)
+    {
+        java.lang.String $r0;
+        com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2 $r1;
+
+        $r0 := @parameter0: java.lang.String;
+
+        $r1 = new com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2;
+
+        specialinvoke $r1.<com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2: void <init>(java.lang.String)>($r0);
+
+        return $r1;
+    }
+
+    public void <init>(java.lang.String)
+    {
+        java.lang.String $r1;
+        com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2 $r0;
+
+        $r0 := @this: com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2;
+
+        $r1 := @parameter0: java.lang.String;
+
+        specialinvoke $r0.<java.lang.Object: void <init>()>();
+
+        $r0.<com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2: java.lang.String cap0> = $r1;
+
+        return;
+    }
+
+    public java.lang.Object get()
+    {
+        java.lang.String $r1;
+        java.lang.IllegalArgumentException $r2;
+        com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2 $r0;
+
+        $r0 := @this: com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2;
+
+        $r1 = $r0.<com.bforbank.sample.domain.TransferUseCase$lambda_executeTransfer_1__2: java.lang.String cap0>;
+
+        $r2 = staticinvoke <com.bforbank.sample.domain.TransferUseCase: java.lang.IllegalArgumentException lambda$executeTransfer$1(java.lang.String)>($r1);
+
+        return $r2;
+    }
+}
